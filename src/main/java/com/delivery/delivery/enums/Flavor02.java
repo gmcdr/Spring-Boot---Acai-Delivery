@@ -1,7 +1,7 @@
 package com.delivery.delivery.enums;
 
 public enum Flavor02 {
-		PACOCA("Paçoca"),
+		PAÇOCA("Paçoca"),
 		MORANGO("Morango"),
 		BANANA("Banana");
 	

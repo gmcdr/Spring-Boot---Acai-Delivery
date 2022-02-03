@@ -1,7 +1,7 @@
 package com.delivery.delivery.model;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.delivery.delivery.enums.Flavor01;
 import com.delivery.delivery.enums.Flavor02;
@@ -24,7 +24,7 @@ import com.delivery.delivery.enums.Product;
 @Entity
 public class Client {
 	
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +34,7 @@ public class Client {
 	@Column(name = "Email")
 	private String email;
 	@Column(name = "Phone")
-	private Integer phone;
+	private String phone;
 	@Column(name = "Adress")
 	private String adress;
 	@Column(name = "Street")
@@ -44,8 +44,8 @@ public class Client {
 	@Column(name = "Town")
 	private String town;
 	@Column(name = "Date_Time")
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-	private Date date;
+	@CreationTimestamp
+	private LocalDateTime  localdate;
 	
 	@Enumerated(EnumType.STRING)
 	private Product product;
@@ -67,7 +67,7 @@ public class Client {
 	public Client(Integer id, 
 			String name, 
 			String email, 
-			Integer phone, 
+			String phone, 
 			String adress, 
 			String street,
 			String complement,
@@ -88,7 +88,6 @@ public class Client {
 			this.street = street;
 			this.complement = complement;
 			this.town = town;
-			this.date = date;
 			this.product = product;
 			this.grams = grams;
 			this.flavor01 = flavor01;
@@ -98,11 +97,17 @@ public class Client {
 	}
 
 
+	public LocalDateTime getLocaldate() {
+		return localdate;
+	}
+
+	public void setLocaldate(LocalDateTime localdate) {
+		this.localdate = localdate;
+	}
 
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -125,11 +130,11 @@ public class Client {
 		this.email = email;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -165,13 +170,6 @@ public class Client {
 		this.town = town;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
 
 	public Product getProduct() {
 		return product;
@@ -230,9 +228,9 @@ public class Client {
 				", street="+ street + 
 				", complement=" + complement + 
 				", town=" + town + 
-				", date=" + sdf.format(date) + 
+				", date=" + localdate + 
 				", product=" + product
-				+ ", grams=" + grams + 
+				+ ", grams=" + grams+ 
 				", flavor01=" + flavor01 + 
 				", flavor02=" + flavor02 + 
 				", flavor03=" + flavor03

@@ -3,7 +3,7 @@ package com.delivery.delivery.enums;
 public enum Flavor01 {
 		GRANOLA("Granola"),
 		CHOCOLATE("Chocolate"),
-		LEITE_EM_PO("Leite em Pó"),
+		LEITE_EM_PÓ("Leite em Pó"),
 		JUJUBA("Jujuba");
 	
 		private String  flavor01;
